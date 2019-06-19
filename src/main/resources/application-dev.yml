@@ -6,16 +6,13 @@ spring:
     username: root
     password: 123
     url: jdbc:mysql://47.105.197.237:3306/app?useUnicode=true&characterEncoding=utf8
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
 
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
   type-aliases-package: com.hp.pojo
 
 
-#showSql
-logging:
-  level:
-    com:
-      example:
-        mapper : debug
+##showSql
+#logging:
+#  level: {root: info,com.hp.dao: debug}

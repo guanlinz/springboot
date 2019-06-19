@@ -10,17 +10,19 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
-public class ClientUserContorller {
+@RequestMapping("/api/transaction")
+public class ClientUserController {
 
     @Autowired
     private ClientUserService clientUserService;
 
 
-    @GetMapping(value = "transaction/list")
+    @GetMapping(value = "list")
     public JsonResult selectClientUser(){
         List<ClientUser> clientUsers = clientUserService.selectClientUser();
 
         return new JsonResult(1,clientUsers);
     }
+
+
 }

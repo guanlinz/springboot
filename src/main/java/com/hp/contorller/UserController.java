@@ -15,8 +15,8 @@ import java.util.List;
 //        maxAge = 3600,
 //        methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.OPTIONS})
 @RestController
-@RequestMapping("/api")
-public class UserContorller {
+@RequestMapping("/api/user")
+public class UserController {
 
     @Autowired
     private UserServer userServer;
@@ -24,8 +24,7 @@ public class UserContorller {
 
 
 
-
-    @PostMapping(value = "user/login")
+    @PostMapping(value = "login")
     public JsonResult selectUser(@RequestParam("username") String username,@RequestParam("password") int password){
         User user = new User();
         user.setUserName(username);
@@ -36,7 +35,7 @@ public class UserContorller {
         return newUser != null? new JsonResult(1,newUser): new JsonResult(2,newUser);
     }
 
-    @PostMapping(value = "user/info")
+    @PostMapping(value = "info")
     public JsonResult selectUserPower(@RequestParam("token") String token){
         UserPower userPower = new UserPower();
         userPower.setPower(token);
@@ -54,12 +53,12 @@ public class UserContorller {
         return new JsonResult(1,bean);
     }
 
-    @GetMapping(value = "user/resetToken")
+    @GetMapping(value = "resetToken")
     public JsonResult selectUserPower(){
         return new JsonResult(1,"admin-token","admin-token");
     }
 
-    @PostMapping("user/logout")
+    @PostMapping("logout")
     public String logOut(){
         return "";
     }
