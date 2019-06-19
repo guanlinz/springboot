@@ -19,6 +19,10 @@ public class OrderController {
     public JsonResult getOrderList(@RequestParam(value = "page") int page,
                                    @RequestParam(value = "limit") int limit,
                                    @RequestParam(value = "sort") String sortOrder) {
+
+            if(sortOrder.equals(" id")){
+                sortOrder = "+id";
+            }
         PageObject<Order> pageObject = orderService.getAllOrders(sortOrder, page, limit);
         return new JsonResult(1,pageObject);
     }
