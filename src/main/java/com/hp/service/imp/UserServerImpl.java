@@ -1,10 +1,10 @@
-package com.hp.server.imp;
+package com.hp.service.imp;
 
 import com.hp.dao.UserDao;
 import com.hp.dao.UserPowerDao;
 import com.hp.pojo.User;
 import com.hp.pojo.UserPower;
-import com.hp.server.UserServer;
+import com.hp.service.UserServer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

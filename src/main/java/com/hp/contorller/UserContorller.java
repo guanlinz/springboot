@@ -2,14 +2,13 @@ package com.hp.contorller;
 
 import com.hp.pojo.User;
 import com.hp.pojo.UserPower;
-import com.hp.server.UserServer;
+import com.hp.service.UserServer;
 import com.hp.vo.JsonResult;
 import com.hp.vo.TokenBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:9528",
@@ -54,5 +53,16 @@ public class UserContorller {
         bean.setRoles(arr);
         return new JsonResult(1,bean);
     }
+
+    @GetMapping(value = "user/resetToken")
+    public JsonResult selectUserPower(){
+        return new JsonResult(1,"admin-token","admin-token");
+    }
+
+    @PostMapping("user/logout")
+    public String logOut(){
+        return "";
+    }
+
 
 }

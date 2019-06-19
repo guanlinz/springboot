@@ -1,4 +1,4 @@
-package com.hp.server;
+package com.hp.service;
 
 import com.hp.pojo.User;
 import com.hp.pojo.UserPower;
