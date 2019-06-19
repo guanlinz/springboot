@@ -18,4 +18,9 @@ public class ClientUserServiceImpl implements ClientUserService {
     public List<ClientUser> selectClientUser() {
         return clientUserDao.selectClientUser();
     }
+
+    @Override
+    public int selectUserCount() {
+        return clientUserDao.selectUserCount();
+    }
 }

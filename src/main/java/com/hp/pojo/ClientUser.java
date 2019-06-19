@@ -10,6 +10,7 @@ public class ClientUser {
     private String add_time;
     private String cityName;
 
+
     public int getUser_id() {
         return user_id;
     }

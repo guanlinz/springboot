@@ -8,4 +8,5 @@ import java.util.List;
 public interface ClientUserDao {
 
     List<ClientUser> selectClientUser();
+    int selectUserCount();
 }

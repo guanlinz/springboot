@@ -6,4 +6,9 @@
     <select id="selectClientUser" resultType="ClientUser">
         select user_id,oppen_id,realname,add_time,cityName from tb_user
     </select>
+
+    <select id="selectUserCount" resultType="int">
+        select count(*) from tb_user
+    </select>
+
 </mapper>

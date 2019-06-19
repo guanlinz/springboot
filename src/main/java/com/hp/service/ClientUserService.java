@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ClientUserService {
     List<ClientUser> selectClientUser();
+    int selectUserCount();
 }

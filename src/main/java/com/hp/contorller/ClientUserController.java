@@ -25,4 +25,9 @@ public class ClientUserController {
     }
 
 
+    @GetMapping(value = "count")
+    public JsonResult selectUserCount(){
+        int count = clientUserService.selectUserCount();
+        return new JsonResult(1,count);
+    }
 }
