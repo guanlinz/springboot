@@ -1,5 +1,6 @@
 package com.hp.contorller;
 
+import com.hp.pojo.ClientUserWithOrder;
 import com.hp.pojo.Order;
 import com.hp.service.OrderService;
 import com.hp.vo.JsonResult;
@@ -15,7 +16,7 @@ public class OrderController {
     private OrderService orderService;
 
 
-        @GetMapping("list")
+    @GetMapping("list")
     public JsonResult getOrderList(@RequestParam(value = "page") int page,
                                    @RequestParam(value = "limit") int limit,
                                    @RequestParam(value = "sort") String sortOrder) {
@@ -23,7 +24,7 @@ public class OrderController {
             if(sortOrder.equals(" id")){
                 sortOrder = "+id";
             }
-        PageObject<Order> pageObject = orderService.getAllOrders(sortOrder, page, limit);
+        PageObject<ClientUserWithOrder> pageObject = orderService.getAllOrders(sortOrder, page, limit);
         return new JsonResult(1,pageObject);
     }
 

@@ -4,12 +4,30 @@ package com.hp.pojo;
 public class Order {
     private String order_id;
     private String goods_id;
+    private String goods_name;
     private String addr_name;
     private String add_time;
     private int status;
     private String express_dm;
     private String express_name;
     private String express_hm;
+    private String oppen_id;
+
+    public String getOppen_id() {
+        return oppen_id;
+    }
+
+    public void setOppen_id(String oppen_id) {
+        this.oppen_id = oppen_id;
+    }
+
+    public String getGoods_name() {
+        return goods_name;
+    }
+
+    public void setGoods_name(String goods_name) {
+        this.goods_name = goods_name;
+    }
 
     public String getOrder_id() {
         return order_id;

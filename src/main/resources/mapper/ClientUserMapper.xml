@@ -11,4 +11,9 @@
         select count(*) from tb_user
     </select>
 
+    <select id="selectClientUserByOpenid" parameterType="string" resultType="ClientUser">
+        select *
+        from tb_user
+        where oppen_id = #{openid};
+    </select>
 </mapper>
