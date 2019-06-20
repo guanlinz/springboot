@@ -4,16 +4,41 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hp.dao.OrderDao">
-    <select id="selAllOrders" resultType="Order">
+    <select id="selAllOrders" resultMap="selAllOrdersMap">
         select
-        order_id, goods_id, goods_name, goods_img, goods_spe, goods_price, goods_num, goods_total, goods_total_num, addr_name, receive, cps_id, cps_name, cps_price, oppen_id, add_time, status, note, phone, express_dm, express_name, express_hm
-        from tb_order
+            order_id, goods_id, goods_name,addr_name, tb_user.oppen_id, tb_order.add_time,
+            tb_order.status,realname,tb_user.cityName
+        from tb_order inner join tb_user on tb_order.oppen_id = tb_user.oppen_id
+        <where>
+            <if test="type == 'order_id'">order_id = #{title}</if>
+            <if test="type == 'goods_name'">goods_name = #{title}</if>
+            <if test="type == 'realname'">realname = #{title}</if>
+        </where>
         order by add_time
         <if test="sort == '+id'">desc</if>
         limit #{startIndex}, #{pageSize}
     </select>
 
+    <resultMap id="selAllOrdersMap" type="ClientUserWithOrder">
+        <association property="user" javaType="ClientUser">
+            <id property="user_id" column="user_id"/>
+            <id property="oppen_id" column="oppen_id"/>
+            <result property="realname" column="realname"/>
+            <result property="add_time" column="add_time"/>
+            <result property="cityName" column="cityName"/>
+        </association>
+        <association property="order" javaType="Order">
+            <id property="order_id" column="order_id"/>
+            <result property="goods_id" column="goods_id"/>
+            <result property="goods_name" column="goods_name"/>
+            <result property="addr_name" column="addr_name"/>
+            <result property="oppen_id" column="oppen_id"/>
+            <result property="add_time" column="add_time"/>
+            <result property="status" column="status"/>
+        </association>
+    </resultMap>
     <select id="selCount" resultType="int">
         select count(*) from tb_order
     </select>
 </mapper>
+

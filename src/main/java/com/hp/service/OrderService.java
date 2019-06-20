@@ -5,5 +5,5 @@ import com.hp.vo.PageObject;
 
 public interface OrderService {
     int getRowCount();
-    PageObject<ClientUserWithOrder> getAllOrders(String sort, Integer currentPage, Integer pageSize);
+    PageObject<ClientUserWithOrder> getAllOrders(String sort, Integer currentPage, Integer pageSize, String content,String type);
 }

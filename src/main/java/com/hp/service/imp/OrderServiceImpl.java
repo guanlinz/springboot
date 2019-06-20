@@ -28,9 +28,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageObject<ClientUserWithOrder> getAllOrders(String sort, Integer currentPage, Integer pageSize) {
+    public PageObject<ClientUserWithOrder> getAllOrders(String sort, Integer currentPage, Integer pageSize, String content,String type) {
         int startIndex = (currentPage - 1) * pageSize;//计算获得startIndex用于sql查询
-        List<Order> records = orderDao.selAllOrders(sort,startIndex,pageSize);//获取数据
+        List<ClientUserWithOrder> entityList = orderDao.selAllOrders(sort,startIndex,pageSize,content,type);//获取数据
         int rowCount = orderDao.selCount();//获取总记录数
         int pageCount = rowCount / pageSize; //计算获得总页数
 
@@ -39,18 +39,6 @@ public class OrderServiceImpl implements OrderService {
             pageCount++;
         }
 
-        List<ClientUserWithOrder> entityList = new ArrayList<>();
-
-        for (Order o : records) {
-            ClientUserWithOrder uwo = new ClientUserWithOrder();
-
-            String openid = o.getOppen_id();
-            ClientUser user =  userDao.selectClientUserByOpenid(openid);
-            uwo.setOrder(o);
-            uwo.setUser(user);
-
-            entityList.add(uwo);
-        }
 
         PageObject<ClientUserWithOrder> obj = new PageObject<>();//创建PageObject对象用于封装信息
         /**封装信息*/
