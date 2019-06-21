@@ -17,4 +17,8 @@
         from tb_user
         where oppen_id = #{openid};
     </select>
+    <select id="selectClientUserByRealName" parameterType="string" resultType="ClientUser">
+        select *
+        from tb_user where realname = #{realname};
+    </select>
 </mapper>

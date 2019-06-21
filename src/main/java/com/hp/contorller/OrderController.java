@@ -34,7 +34,7 @@ public class OrderController {
 
 
     @PostMapping("save")
-    public JsonResult saveOrder(@RequestParam("fucker") String goods_name,
+    public JsonResult saveOrder(@RequestParam("goodsName") String goods_name,
                                 @RequestParam("realName") String realname,
                                 @RequestParam("cityName") String cityName,
                                 @RequestParam("deliverTime")String time) {
