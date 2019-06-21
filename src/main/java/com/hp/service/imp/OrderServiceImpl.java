@@ -28,7 +28,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public PageObject<ClientUserWithOrder> getAllOrders(String sort, Integer currentPage, Integer pageSize, String content,String type) {
+    public PageObject<ClientUserWithOrder> getAllOrders(String sort, Integer currentPage, Integer pageSize,
+                                                        String content,String type) {
         int startIndex = (currentPage - 1) * pageSize;//计算获得startIndex用于sql查询
         List<ClientUserWithOrder> entityList = orderDao.selAllOrders(sort,startIndex,pageSize,content,type);//获取数据
         int rowCount = orderDao.selCount();//获取总记录数
@@ -48,4 +49,13 @@ public class OrderServiceImpl implements OrderService {
         obj.setTotal(rowCount);
         return obj;//返回PageObject对象(到控制层)
     }
+
+    @Override
+    public int saveOrder(Order order,String realname) {
+        ClientUser user = userDao.selectClientUserByRealName(realname);
+        order.setOppen_id(user.getOppen_id());
+        return orderDao.saveOrder(order);
+    }
+
+
 }

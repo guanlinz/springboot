@@ -4,15 +4,19 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.hp.dao.OrderDao">
+
+    <cache />
     <select id="selAllOrders" resultMap="selAllOrdersMap">
         select
-            order_id, goods_id, goods_name,addr_name, tb_user.oppen_id, tb_order.add_time,
+            order_id, goods_id, goods_name,addr_name,
+            tb_user.oppen_id, tb_order.add_time,
             tb_order.status,realname,tb_user.cityName
-        from tb_order inner join tb_user on tb_order.oppen_id = tb_user.oppen_id
+        from tb_order inner join tb_user
+        on tb_order.oppen_id = tb_user.oppen_id
         <where>
-            <if test="type == 'order_id'">order_id = #{title}</if>
-            <if test="type == 'goods_name'">goods_name = #{title}</if>
-            <if test="type == 'realname'">realname = #{title}</if>
+            <if test="type == 'order_id'">order_id like concat('%',#{title},'%') </if>
+            <if test="type == 'goods_name'">goods_name like concat('%',#{title},'%')</if>
+            <if test="type == 'realname'">realname like concat('%',#{title},'%')</if>
         </where>
         order by add_time
         <if test="sort == '+id'">desc</if>
@@ -40,5 +44,24 @@
     <select id="selCount" resultType="int">
         select count(*) from tb_order
     </select>
+    <select id="selCountByOpenId" parameterType="string" resultType="int">
+        select count(*) from tb_order
+        where oppen_id = #{openid}
+    </select>
+    <select id="selCountByGoodsName"  parameterType="string" resultType="int">
+        select count(*) from tb_order
+        where goods_name = #{goodsname}
+    </select>
+    <select id="selCountByRealName"  parameterType="string" resultType="int">
+        select count(*)
+        from tb_order inner join tb_user
+        on tb_user.oppen_id = tb_order.oppen_id
+        where tb_user.realname = #{realname}
+    </select>
+    <insert id="saveOrder" parameterType="Order">
+        insert into tb_order
+            (order_id,goods_id,goods_name,
+             addr_name,oppen_id,add_time)
+        values (#{order_id},#{goods_id},#{goods_name},#{addr_name},#{oppen_id},now());
+    </insert>
 </mapper>
-

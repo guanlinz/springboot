@@ -1,9 +1,10 @@
 package com.hp.pojo;
 
-import javax.xml.crypto.Data;
+import java.io.Serializable;
 
-public class ClientUser {
+public class ClientUser implements Serializable {
 
+    private static final long serialVersionUID = -2898061659282589461L;
     private int user_id;
     private String oppen_id;
     private String realname;
@@ -49,5 +50,9 @@ public class ClientUser {
 
     public void setCityName(String cityName) {
         this.cityName = cityName;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 }

@@ -11,5 +11,6 @@ public interface ClientUserDao {
     List<ClientUser> selectClientUser();
     int selectUserCount();
     ClientUser selectClientUserByOpenid(@Param("openid") String openid);
+    ClientUser selectClientUserByRealName(@Param("realname") String realname);
 
 }

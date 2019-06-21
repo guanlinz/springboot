@@ -1,6 +1,9 @@
 package com.hp.pojo;
 
-public class UserPower {
+import java.io.Serializable;
+
+public class UserPower implements Serializable {
+    private static final long serialVersionUID = 1628251423436596789L;
     private String roles;
     private String power;
 

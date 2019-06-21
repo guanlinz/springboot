@@ -1,8 +1,11 @@
 package com.hp.pojo;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
 
 
+    private static final long serialVersionUID = 4569824782919360473L;
     private int id;
     private String userName;
     private int passWord;
@@ -39,5 +42,9 @@ public class User {
 
     public void setPassWord(int passWord) {
         this.passWord = passWord;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 }

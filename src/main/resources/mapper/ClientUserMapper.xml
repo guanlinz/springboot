@@ -12,7 +12,8 @@
     </select>
 
     <select id="selectClientUserByOpenid" parameterType="string" resultType="ClientUser">
-        select *
+        select
+        user_id, oppen_id, username, realname, password, head_img, add_time, area_id, area_name, status, member_time, integral, referrer, createdUser, modifiedTime, modifiedUser, QRCode, cityName, country, province
         from tb_user
         where oppen_id = #{openid};
     </select>

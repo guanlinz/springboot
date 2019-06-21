@@ -6,4 +6,9 @@
     <select id="selectUser" resultType="User">
         select token from users where username = #{userName} and password = #{passWord}
     </select>
+    <select id="selectClientUserByRealName" resultType="User">
+        select  distinct
+        user_id, oppen_id, username, realname, password, head_img, add_time, area_id, area_name, status, member_time, integral, referrer, createdUser, modifiedTime, modifiedUser, QRCode, cityName, country, province
+        from tb_user where realname = #{realname};
+    </select>
 </mapper>

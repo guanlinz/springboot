@@ -1,7 +1,10 @@
 package com.hp.pojo;
 
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
+    private static final long serialVersionUID = 7112882867233269918L;
     private String order_id;
     private String goods_id;
     private String goods_name;
@@ -93,6 +96,9 @@ public class Order {
         this.express_hm = express_hm;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     @Override
     public String toString() {

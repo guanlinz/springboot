@@ -1,6 +1,9 @@
 package com.hp.pojo;
 
-public class ClientUserWithOrder {
+import java.io.Serializable;
+
+public class ClientUserWithOrder implements Serializable {
+    private static final long serialVersionUID = 1974695019401433239L;
     private ClientUser user;
     private Order order;
 
@@ -20,6 +23,10 @@ public class ClientUserWithOrder {
         this.order = order;
     }
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
     @Override
     public String toString() {
         return "ClientUserWithOrder{" +
@@ -27,4 +34,5 @@ public class ClientUserWithOrder {
                 ", order=" + order +
                 '}';
     }
+
 }

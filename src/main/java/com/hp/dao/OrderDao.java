@@ -16,4 +16,8 @@ public interface OrderDao {
                                            @Param("title") String title,
                                            @Param("type") String type);
     int selCount();
+    int saveOrder(Order order);
+    int selCountByOpenId(@Param("openid") String openid);
+    int selCountByGoodsName(@Param("goodsname") String goodName);
+    int selCountByRealName(@Param("realname") String realname);
 }
