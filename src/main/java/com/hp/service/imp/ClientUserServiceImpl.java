@@ -20,6 +20,11 @@ public class ClientUserServiceImpl implements ClientUserService {
     }
 
     @Override
+    public List<ClientUser> selectClientUserFuzzy(String realname) {
+        return clientUserDao.selectClientUserFuzzy(realname);
+    }
+
+    @Override
     public int selectUserCount() {
         return clientUserDao.selectUserCount();
     }

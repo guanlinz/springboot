@@ -7,10 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 @Repository
 public interface ClientUserDao {
-
     List<ClientUser> selectClientUser();
     int selectUserCount();
     ClientUser selectClientUserByOpenid(@Param("openid") String openid);
     ClientUser selectClientUserByRealName(@Param("realname") String realname);
+    List<ClientUser> selectClientUserFuzzy(@Param("realname") String realname);
 
 }

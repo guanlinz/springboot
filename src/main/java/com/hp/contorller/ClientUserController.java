@@ -30,4 +30,10 @@ public class ClientUserController {
         int count = clientUserService.selectUserCount();
         return new JsonResult(1,count);
     }
+
+    @GetMapping(value = "fuzzyList")
+    public JsonResult selectClientUserFuzzy(@RequestParam("realname") String realname) {
+        List<ClientUser> resultList = clientUserService.selectClientUserFuzzy(realname);
+        return new JsonResult(1,resultList);
+    }
 }
