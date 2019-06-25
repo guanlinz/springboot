@@ -61,7 +61,28 @@
     <insert id="saveOrder" parameterType="Order">
         insert into tb_order
             (order_id,goods_id,goods_name,
-             addr_name,oppen_id,add_time)
-        values (#{order_id},#{goods_id},#{goods_name},#{addr_name},#{oppen_id},now());
+             addr_name,oppen_id,add_time,status)
+        values (#{order_id},#{goods_id},#{goods_name},#{addr_name},#{oppen_id},now(),0);
     </insert>
+    <update id="payOrderByOpenId" parameterType="Order">
+        update tb_order
+        set status = 1
+        where order_id = #{order_id};
+    </update>
+    <update id="finishOrder" parameterType="Order">
+        update tb_order
+        set status = 1
+        where order_id = #{order_id};
+    </update>
+    <update id="updateStatusByOpenId" parameterType="Order">
+        UPDATE tb_order
+        SET status =
+            CASE status
+            WHEN 0 THEN 1
+            WHEN 1 THEN -6
+            WHEN -6 THEN -6
+        END
+        where order_id = #{order_id}
+    </update>
+
 </mapper>

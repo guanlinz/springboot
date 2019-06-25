@@ -9,7 +9,6 @@ import com.hp.service.OrderService;
 import com.hp.vo.PageObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -57,5 +56,8 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.saveOrder(order);
     }
 
-
+    @Override
+    public int updateStatusByOrderId(Order order) {
+        return orderDao.updateStatusByOpenId(order);
+    }
 }

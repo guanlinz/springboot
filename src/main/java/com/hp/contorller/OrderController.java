@@ -46,4 +46,15 @@ public class OrderController {
         return result == 1 ? new JsonResult(1,"保存成功"):
                              new JsonResult(0,"保存失败");
     }
+
+
+    @PostMapping("update")
+    public JsonResult setStatusByOrderId(@RequestParam("orderId") String orderId) {
+        Order order = new Order();
+        order.setOrder_id(orderId);
+
+        int result = orderService.updateStatusByOrderId(order);
+        return result == 1 ? new JsonResult(1,"更新成功"):
+                            new JsonResult(0,"更新失败");
+    }
 }

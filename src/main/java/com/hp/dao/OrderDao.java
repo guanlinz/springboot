@@ -1,6 +1,5 @@
 package com.hp.dao;
 
-import com.hp.pojo.ClientUser;
 import com.hp.pojo.ClientUserWithOrder;
 import com.hp.pojo.Order;
 import org.apache.ibatis.annotations.Param;
@@ -20,4 +19,5 @@ public interface OrderDao {
     int selCountByOpenId(@Param("openid") String openid);
     int selCountByGoodsName(@Param("goodsname") String goodName);
     int selCountByRealName(@Param("realname") String realname);
+    int updateStatusByOpenId(Order order);
 }
