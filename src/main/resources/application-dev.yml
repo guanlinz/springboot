@@ -55,6 +55,7 @@ mybatis:
   type-aliases-package: com.hp.pojo
 
 
+
 ##showSql
 #logging:
 #  level: {root: info,com.hp.dao: debug}
