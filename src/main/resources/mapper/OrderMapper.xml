@@ -85,4 +85,9 @@
         where order_id = #{order_id}
     </update>
 
+    <select id="selectAddr_name" resultType="Order">
+        select addr_name from tb_order where status = 1
+    </select>
+
+
 </mapper>

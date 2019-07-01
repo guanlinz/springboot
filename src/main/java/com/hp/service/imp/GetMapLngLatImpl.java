@@ -1,8 +1,8 @@
-package com.hp.contorller;
+package com.hp.service.imp;
 
 import com.hp.pojo.GetMap;
-import com.hp.vo.JsonResult;
-import org.springframework.web.bind.annotation.*;
+import com.hp.service.GetMapLngLatService;
+import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,20 +13,11 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 
+@Service
+public class GetMapLngLatImpl implements GetMapLngLatService {
 
-@RestController
-@RequestMapping("/api/map")
-public class GetMapLngLat {
-
-    /**
-     * 根据城市名称查询所在经纬度
-     * @param addr
-     * 查询的地址
-     * @return
-     * @throws IOException
-     */
-    @PostMapping(value = "getCoordinate")
-    public JsonResult getCoordinate(@RequestParam("addr") String addr) throws IOException {
+    @Override
+    public GetMap getMapLngLat(String addr) throws IOException {
         String lng = null;//经度
         String lat = null;//纬度
         String address = null;
@@ -79,10 +70,6 @@ public class GetMapLngLat {
         GetMap map = new GetMap();
         map.setLng(lng);
         map.setLat(lat);
-
-        return new JsonResult(1,map);
+        return map;
     }
-
-
-
 }

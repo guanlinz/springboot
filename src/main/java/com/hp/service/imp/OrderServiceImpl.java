@@ -60,4 +60,9 @@ public class OrderServiceImpl implements OrderService {
     public int updateStatusByOrderId(Order order) {
         return orderDao.updateStatusByOpenId(order);
     }
+
+    @Override
+    public List<Order> selectAddr_name() {
+        return orderDao.selectAddr_name();
+    }
 }

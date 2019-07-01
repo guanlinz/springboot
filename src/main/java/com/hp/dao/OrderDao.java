@@ -20,4 +20,5 @@ public interface OrderDao {
     int selCountByGoodsName(@Param("goodsname") String goodName);
     int selCountByRealName(@Param("realname") String realname);
     int updateStatusByOpenId(Order order);
+    List<Order> selectAddr_name();
 }

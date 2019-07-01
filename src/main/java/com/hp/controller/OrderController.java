@@ -1,4 +1,4 @@
-package com.hp.contorller;
+package com.hp.controller;
 
 import com.hp.pojo.ClientUserWithOrder;
 import com.hp.pojo.Order;
@@ -56,5 +56,10 @@ public class OrderController {
         int result = orderService.updateStatusByOrderId(order);
         return result == 1 ? new JsonResult(1,"更新成功"):
                             new JsonResult(0,"更新失败");
+    }
+
+    @GetMapping("getAddrName")
+    public JsonResult searchcCoordinate(){
+        return new JsonResult(1,orderService.selectAddr_name());
     }
 }

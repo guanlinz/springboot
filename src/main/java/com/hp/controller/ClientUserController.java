@@ -1,4 +1,4 @@
-package com.hp.contorller;
+package com.hp.controller;
 
 import com.hp.pojo.ClientUser;
 import com.hp.service.ClientUserService;
@@ -36,4 +36,6 @@ public class ClientUserController {
         List<ClientUser> resultList = clientUserService.selectClientUserFuzzy(realname);
         return new JsonResult(1,resultList);
     }
+
+
 }

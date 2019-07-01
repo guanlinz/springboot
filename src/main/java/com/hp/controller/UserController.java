@@ -1,4 +1,4 @@
-package com.hp.contorller;
+package com.hp.controller;
 
 import com.hp.pojo.User;
 import com.hp.pojo.UserPower;
@@ -8,7 +8,6 @@ import com.hp.vo.TokenBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 //@CrossOrigin(origins = "http://localhost:9528",
@@ -59,9 +58,8 @@ public class UserController {
     }
 
     @PostMapping("logout")
-    public String logOut(){
-        return "";
+    public JsonResult logOut(){
+        return new JsonResult(1,"ok");
     }
-
 
 }
