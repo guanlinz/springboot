@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
@@ -59,12 +60,13 @@ public class UserController {
 
     @PostMapping("faceLogin")
     public JsonResult faceLogin(@RequestParam("snapData") String snapData,
-                                @RequestParam("username") String username) throws Exception{
+                                @RequestParam("username") String username,
+                                @RequestParam(value = "password",required = false) String password) throws Exception{
         User tmpUser = new User();
         tmpUser.setUserName(username);
         FaceResult faceResult = userService.faceLogin(tmpUser, snapData);
         tmpUser.setToken(faceResult.getToken());
-        String resultMessage = faceResult.getErrorMsg() + "score: " + faceResult.getScore();
+        String resultMessage = faceResult.getErrorMsg() + " score: " + faceResult.getScore();
         return new JsonResult(faceResult.getState(),resultMessage,tmpUser);
     }
 
