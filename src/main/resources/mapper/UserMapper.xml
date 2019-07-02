@@ -11,4 +11,15 @@
         user_id, oppen_id, username, realname, password, head_img, add_time, area_id, area_name, status, member_time, integral, referrer, createdUser, modifiedTime, modifiedUser, QRCode, cityName, country, province
         from tb_user where realname = #{realname};
     </select>
+
+    <select id="selectUserByFace" resultType="User">
+        select token
+        from users where username = #{userName};
+    </select>
+
+    <insert id="insertNewUser" parameterType="User">
+        insert into users (id, username, password, token)
+        values (default,#{username},null,default);
+    </insert>
+
 </mapper>

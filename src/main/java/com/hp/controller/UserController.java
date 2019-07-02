@@ -2,7 +2,8 @@ package com.hp.controller;
 
 import com.hp.pojo.User;
 import com.hp.pojo.UserPower;
-import com.hp.service.UserServer;
+import com.hp.service.UserService;
+import com.hp.vo.FaceResult;
 import com.hp.vo.JsonResult;
 import com.hp.vo.TokenBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,18 +11,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//@CrossOrigin(origins = "http://localhost:9528",
-//        maxAge = 3600,
-//        methods = {RequestMethod.GET, RequestMethod.POST,RequestMethod.DELETE,RequestMethod.OPTIONS})
 @RestController
 @RequestMapping("/api/user")
 public class UserController {
 
     @Autowired
-    private UserServer userServer;
-
-
-
+    private UserService userService;
 
     @PostMapping(value = "login")
     public JsonResult selectUser(@RequestParam("username") String username,@RequestParam("password") int password){
@@ -29,7 +24,7 @@ public class UserController {
         user.setUserName(username);
         user.setPassWord(password);
 
-        User newUser = userServer.selectUser(user);
+        User newUser = userService.selectUser(user);
 
         return newUser != null? new JsonResult(1,newUser): new JsonResult(2,newUser);
     }
@@ -38,7 +33,7 @@ public class UserController {
     public JsonResult selectUserPower(@RequestParam("token") String token){
         UserPower userPower = new UserPower();
         userPower.setPower(token);
-        List<UserPower> userPowers = userServer.selectUserPower(userPower);
+        List<UserPower> userPowers = userService.selectUserPower(userPower);
 
         TokenBean bean = new TokenBean();
         bean.setIntroduction("i am a administrator");
@@ -60,6 +55,27 @@ public class UserController {
     @PostMapping("logout")
     public JsonResult logOut(){
         return new JsonResult(1,"ok");
+    }
+
+    @PostMapping("faceLogin")
+    public JsonResult faceLogin(@RequestParam("snapData") String snapData,
+                                @RequestParam("username") String username) throws Exception{
+        User tmpUser = new User();
+        tmpUser.setUserName(username);
+        FaceResult faceResult = userService.faceLogin(tmpUser, snapData);
+        tmpUser.setToken(faceResult.getToken());
+        String resultMessage = faceResult.getErrorMsg() + "score: " + faceResult.getScore();
+        return new JsonResult(faceResult.getState(),resultMessage,tmpUser);
+    }
+
+    @PostMapping("faceRegister")
+    public JsonResult faceRegister(@RequestParam("snapData") String snapData,
+                                   @RequestParam("username") String username) {
+        User tmpUser = new User();
+        tmpUser.setUserName(username);
+        return userService.faceRegister(tmpUser, snapData) ?
+               new JsonResult(1,"注册成功") :
+               new JsonResult(0,"注册失败");
     }
 
 }
