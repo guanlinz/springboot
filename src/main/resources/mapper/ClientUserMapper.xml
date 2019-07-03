@@ -28,4 +28,11 @@
         select *
         from tb_user where realname = #{realname};
     </select>
+
+    <select id="ClientUserSupervise" resultType="ClientUser">
+        select user_id ,realname,head_img,integral,add_time,status,country,province,cityName
+        from tb_user
+        order by add_time desc
+        limit #{startIndex},#{pageSize}
+    </select>
 </mapper>

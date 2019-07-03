@@ -10,7 +10,54 @@ public class ClientUser implements Serializable {
     private String realname;
     private String add_time;
     private String cityName;
+    private String province;
+    private String head_img;
+    private int status;
+    private int integral;
+    private String country;
 
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getHead_img() {
+        return head_img;
+    }
+
+    public void setHead_img(String head_img) {
+        this.head_img = head_img;
+    }
+
+    public String getStatus() {
+        if (status == 1){
+            return "存在";
+        }
+        return "注销";
+    }
+
+    public void setStatus(int  status) {
+        this.status = status;
+    }
+
+    public int getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(int integral) {
+        this.integral = integral;
+    }
 
     public int getUser_id() {
         return user_id;

@@ -3,6 +3,7 @@ package com.hp.controller;
 import com.hp.pojo.ClientUser;
 import com.hp.service.ClientUserService;
 import com.hp.vo.JsonResult;
+import com.hp.vo.PageObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,7 +18,7 @@ public class ClientUserController {
     private ClientUserService clientUserService;
 
 
-    @GetMapping(value = "list")
+    @PostMapping(value = "list")
     public JsonResult selectClientUser(){
         List<ClientUser> clientUsers = clientUserService.selectClientUser();
 
@@ -37,5 +38,11 @@ public class ClientUserController {
         return new JsonResult(1,resultList);
     }
 
+    @GetMapping("ClientUser")
+    public JsonResult ClientUserSupervise(@RequestParam("startPage") Integer startPage,
+                                          @RequestParam("pageSize") Integer pageSize){
+        PageObject<ClientUser> pageObject = clientUserService.ClientUserSupervise(startPage,pageSize);
+        return new JsonResult(1,pageObject);
+    }
 
 }

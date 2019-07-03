@@ -24,7 +24,7 @@ public class GoodsController {
         return new JsonResult(1,goods);
     }
 
-    @PostMapping("deleteGoods")
+        @PostMapping("deleteGoods")
     public JsonResult deleteGoods(@RequestParam("goods_id") String goods_id,@RequestParam("goods_name") String goods_name){
 
        Goods good = new Goods();
