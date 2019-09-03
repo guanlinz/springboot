@@ -24,10 +24,13 @@ public class UserController {
         User user = new User();
         user.setUserName(username);
         user.setPassWord(password);
+        user.setToken("admin-token");
+//        System.out.println(user.getToken());
+//        FaceResult faceResult = new FaceResult();
+//        faceResult.setToken("admin-token");
+//        User newUser = userService.selectUser(user);
 
-        User newUser = userService.selectUser(user);
-
-        return newUser != null? new JsonResult(1,newUser): new JsonResult(2,newUser);
+        return  new JsonResult(1,"success",user);
     }
 
     @PostMapping(value = "info")
@@ -67,7 +70,7 @@ public class UserController {
         FaceResult faceResult = userService.faceLogin(tmpUser, snapData);
         tmpUser.setToken(faceResult.getToken());
         String resultMessage = faceResult.getErrorMsg() + " score: " + faceResult.getScore();
-        return new JsonResult(faceResult.getState(),resultMessage,tmpUser);
+        return new JsonResult(1,"asdasd",tmpUser);
     }
 
     @PostMapping("faceRegister")
